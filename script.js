@@ -19,7 +19,7 @@
     fields.forEach(function (field) {
       progress[field.dataset.save] = field.type === 'checkbox' ? field.checked : field.value.trim();
     });
-    localStorage.setItem(storageKey, JSON.stringify(progress));
+    try { localStorage.setItem(storageKey, JSON.stringify(progress)); } catch (error) {}
     renderSummary();
   }
 
@@ -29,6 +29,7 @@
   }
 
   function showRoute() {
+    if (location.hash && location.hash.indexOf('#/') !== 0) return;
     var route = getRoute();
     screens.forEach(function (screen) { screen.hidden = screen.dataset.screen !== route; });
     tabs.forEach(function (tab) {
@@ -37,7 +38,9 @@
       else tab.removeAttribute('aria-current');
     });
     renderSummary();
-    document.getElementById('app').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (location.hash.indexOf('#/') === 0) {
+      document.getElementById('app').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   function renderSummary() {
@@ -67,7 +70,7 @@
 
   document.getElementById('resetProgress').addEventListener('click', function () {
     if (!window.confirm('Удалить ответы и начать заново?')) return;
-    localStorage.removeItem(storageKey);
+    try { localStorage.removeItem(storageKey); } catch (error) {}
     progress = {};
     fields.forEach(function (field) {
       if (field.type === 'checkbox') field.checked = false;
@@ -84,12 +87,35 @@
       status.textContent = 'Сначала заполните хотя бы один предыдущий шаг.';
       return;
     }
-    navigator.clipboard.writeText(text).then(function () {
+    copyText(text).then(function () {
       status.textContent = 'План скопирован.';
     }).catch(function () {
       status.textContent = 'Не удалось скопировать автоматически — выделите текст вручную.';
     });
   });
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      var helper = document.createElement('textarea');
+      helper.value = text;
+      helper.setAttribute('readonly', '');
+      helper.style.position = 'fixed';
+      helper.style.opacity = '0';
+      document.body.appendChild(helper);
+      helper.select();
+      try {
+        if (document.execCommand('copy')) resolve();
+        else reject(new Error('copy failed'));
+      } catch (error) {
+        reject(error);
+      } finally {
+        document.body.removeChild(helper);
+      }
+    });
+  }
 
   window.addEventListener('hashchange', showRoute);
   showRoute();
