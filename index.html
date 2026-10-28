@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>От идеи к бизнесу</title>
+  <meta name="description" content="Прототип сервиса «От идеи к бизнесу»: два понятных пути для старта.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="На главную">
+      <span class="brand-mark" aria-hidden="true">AL</span>
+    </a>
+    <a class="header-link" href="#/start">Открыть приложение</a>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Практический навигатор</p>
+        <h1 id="hero-title">От идеи<br>к бизнесу</h1>
+        <p class="lead">Поможем превратить замысел в понятное направление и определить, с чего начать.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#/start">Выбрать свой путь</a>
+          <a class="button button-ghost" href="#how-it-works">Как это работает</a>
+        </div>
+      </div>
+
+      <figure class="hero-visual">
+        <div class="visual-halo" aria-hidden="true"></div>
+        <img src="assets/business-desk.png" width="1536" height="1024" alt="Деловой стол с ноутбуком, документами с графиками, блокнотом и ручкой">
+      </figure>
+    </section>
+
+    <section class="directions" id="directions" aria-labelledby="directions-title">
+      <div class="section-heading">
+        <p class="eyebrow">Выберите, что ближе сейчас</p>
+        <h2 id="directions-title">Два пути к следующему шагу</h2>
+      </div>
+
+      <div class="cards">
+        <article class="path-card">
+          <div class="cube-icon cube-solid" aria-hidden="true">
+            <span class="cube-top"></span>
+            <span class="cube-left"></span>
+            <span class="cube-right"></span>
+          </div>
+          <div>
+            <p class="card-kicker">Путь 01</p>
+            <h3>У меня уже есть бизнес-идея</h3>
+            <p>Разберём идею, соберём её в понятную систему и определим ближайший практический шаг.</p>
+          </div>
+          <a class="card-button" href="#/idea" data-choice="idea">Продолжить с идеей <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="path-card path-card-accent">
+          <div class="cube-icon cube-composite" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div>
+            <p class="card-kicker">Путь 02</p>
+            <h3>Помогите выбрать направление</h3>
+            <p>Оттолкнёмся от ваших сильных сторон, опыта и интересов, чтобы сузить выбор без случайных догадок.</p>
+          </div>
+          <a class="card-button" href="#/direction" data-choice="direction">Подобрать направление <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="workspace" id="app" aria-labelledby="app-title">
+      <div class="workspace-head">
+        <div>
+          <p class="eyebrow">Бесплатная демоверсия</p>
+          <h2 id="app-title">Соберите основу будущего бизнеса</h2>
+        </div>
+        <button class="reset-button" type="button" id="resetProgress">Начать заново</button>
+      </div>
+
+      <nav class="app-tabs" aria-label="Этапы работы">
+        <a href="#/start" data-route="start">Старт</a>
+        <a href="#/idea" data-route="idea">Идея</a>
+        <a href="#/audience" data-route="audience">Клиент</a>
+        <a href="#/model" data-route="model">Модель</a>
+        <a href="#/plan" data-route="plan">План</a>
+      </nav>
+
+      <div class="app-panel" data-screen="start">
+        <p class="screen-number">Шаг 0</p>
+        <h3>Выберите исходную точку</h3>
+        <p>Если идея уже есть — начните с её короткого описания. Если идеи пока нет — ответьте на вопросы, чтобы наметить направление.</p>
+        <div class="screen-actions">
+          <a class="button button-primary" href="#/idea">У меня есть идея</a>
+          <a class="button button-ghost" href="#/direction">Нужно выбрать направление</a>
+        </div>
+      </div>
+
+      <div class="app-panel" data-screen="direction" hidden>
+        <p class="screen-number">Подбор направления</p>
+        <h3>От чего можно оттолкнуться</h3>
+        <label>Что вы умеете делать хорошо?<textarea data-save="strengths" placeholder="Например: организовывать процессы, объяснять сложное, работать руками"></textarea></label>
+        <label>С какими задачами к вам уже обращаются?<textarea data-save="requests" placeholder="Запишите 2–3 повторяющиеся задачи"></textarea></label>
+        <label>Что вы точно не хотите делать?<textarea data-save="limits" placeholder="Ограничения помогают сузить выбор"></textarea></label>
+        <div class="screen-actions"><a class="button button-primary" href="#/idea">Сформулировать идею</a></div>
+      </div>
+
+      <div class="app-panel" data-screen="idea" hidden>
+        <p class="screen-number">Шаг 1 из 4</p>
+        <h3>Сформулируйте идею одним предложением</h3>
+        <label>Я хочу создать…<textarea data-save="idea" placeholder="Что вы предлагаете и в каком формате"></textarea></label>
+        <label>Это поможет людям…<textarea data-save="benefit" placeholder="Какую задачу станет проще решить"></textarea></label>
+        <div class="screen-actions"><a class="button button-primary" href="#/audience">Дальше: клиент</a></div>
+      </div>
+
+      <div class="app-panel" data-screen="audience" hidden>
+        <p class="screen-number">Шаг 2 из 4</p>
+        <h3>Для кого эта идея</h3>
+        <label>Кто ваш первый возможный клиент?<textarea data-save="audience" placeholder="Опишите конкретного человека или тип компании"></textarea></label>
+        <label>В какой ситуации ему нужна помощь?<textarea data-save="situation" placeholder="Что происходит до обращения к вам"></textarea></label>
+        <div class="screen-actions"><a class="button button-ghost" href="#/idea">Назад</a><a class="button button-primary" href="#/model">Дальше: модель</a></div>
+      </div>
+
+      <div class="app-panel" data-screen="model" hidden>
+        <p class="screen-number">Шаг 3 из 4</p>
+        <h3>Как будет устроено предложение</h3>
+        <label>Что именно получает клиент?<textarea data-save="result" placeholder="Результат, формат и границы"></textarea></label>
+        <label>Как вы сможете это проверить без больших затрат?<textarea data-save="test" placeholder="Самый простой тест идеи"></textarea></label>
+        <div class="screen-actions"><a class="button button-ghost" href="#/audience">Назад</a><a class="button button-primary" href="#/plan">Собрать план</a></div>
+      </div>
+
+      <div class="app-panel" data-screen="plan" hidden>
+        <p class="screen-number">Шаг 4 из 4</p>
+        <h3>Ваш первый план</h3>
+        <div class="summary" id="summary"></div>
+        <div class="checklist">
+          <label><input type="checkbox" data-save="task-1"> Поговорить с тремя возможными клиентами</label>
+          <label><input type="checkbox" data-save="task-2"> Сформулировать простое первое предложение</label>
+          <label><input type="checkbox" data-save="task-3"> Проверить интерес без разработки большого продукта</label>
+        </div>
+        <div class="screen-actions"><a class="button button-ghost" href="#/model">Назад</a><button class="button button-primary" type="button" id="copyPlan">Скопировать план</button></div>
+        <p class="copy-status" id="copyStatus" role="status"></p>
+      </div>
+    </section>
+
+    <section class="how" id="how-it-works" aria-labelledby="how-title">
+      <p class="eyebrow">Как это работает</p>
+      <h2 id="how-title">Сначала выбираем исходную точку</h2>
+      <p>Нажмите на подходящую карточку. Прототип покажет выбранный сценарий и следующий шаг.</p>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
